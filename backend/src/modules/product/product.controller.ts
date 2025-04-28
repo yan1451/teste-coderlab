@@ -22,7 +22,7 @@ export class ProductController {
     return this.productService.getAll(params);
   }
 
-  @Get(':id')
+  @Get('/:id')
   findOne(@Param('id') id: string) {
     return this.productService.getById(id);
   }
@@ -32,12 +32,12 @@ export class ProductController {
     return this.productService.create(product);
   }
 
-  @Patch(':id')
+  @Patch('/:id')
   update(@Param('id') id: string, @Body() updateData: UpdateProductDto) {
     return this.productService.update(id, updateData);
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   remove(@Param('id') id: string) {
     return this.productService.delete(id);
   }
