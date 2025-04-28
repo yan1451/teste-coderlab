@@ -2,11 +2,18 @@
 
 Este é o projeto **Teste CoderLab**, uma aplicação desenvolvida para gerenciamento de produtos e categorias.
 
+## Tecnologias Utilizadas
+
+- **React**: Utilizado para a construção da interface do usuário devido à sua flexibilidade e grande comunidade.
+- **Node.js**: Escolhido para o backend pela sua eficiência e suporte a aplicações escaláveis.
+- **Prisma**: Utilizado como ORM para facilitar o gerenciamento e interação com o banco de dados.
+- **shadcn**: Adotado para explorar e aprender sobre este novo framework.
+
 ## Pré-requisitos
 
 Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-- [Node.js](https://nodejs.org/) (versão 16 ou superior)
+- [Node.js](https://nodejs.org/) (versão 20 ou superior)
 - [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
 - [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/) 
 
