@@ -8,7 +8,7 @@ services:
     ports:
       - "3333:3333"
     environment:
-      DATABASE_URL: "postgresql://postgres:2FDafk0BknD3£41dk@db:5432/postgres"
+      DATABASE_URL: ${DATABASE_URL}
     volumes:
       - ./backend:/app
     depends_on:
@@ -23,9 +23,9 @@ services:
     image: postgres:15-alpine
     container_name: postgres_db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 2FDafk0BknD3£41dk
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
