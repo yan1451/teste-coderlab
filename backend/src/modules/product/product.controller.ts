@@ -7,16 +7,19 @@ import {
   Delete,
   Param,
   Body,
+  Query,
 } from '@nestjs/common';
 import { Product } from '@prisma/client';
+import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  findAll(): Promise<Product[]> {
-    return this.productService.getAll();
+  findAll(@Query() params: any): Promise<Product[]> {
+    return this.productService.getAll(params);
   }
 
   @Get(':id')
@@ -25,12 +28,12 @@ export class ProductController {
   }
 
   @Post()
-  create(@Body() product: any) {
+  create(@Body() product: CreateProductDto) {
     return this.productService.create(product);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateData: Partial<Product>) {
+  update(@Param('id') id: string, @Body() updateData: UpdateProductDto) {
     return this.productService.update(id, updateData);
   }
 
