@@ -3,6 +3,15 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  const existingRootCategory = await prisma.category.findFirst({
+    where: { name: 'Eletrônicos' },
+  });
+
+  if (existingRootCategory) {
+    console.log('Categorias já existem, não precisa criar novamente.');
+    return;
+  }
+
   const rootCategory = await prisma.category.create({
     data: {
       name: 'Eletrônicos',
