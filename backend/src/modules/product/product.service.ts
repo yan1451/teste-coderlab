@@ -65,7 +65,7 @@ export class ProductService {
         ...productData,
         categories: {
           connect: Array.isArray(categories)
-            ? categories.map((categoryId: string) => ({ id: categoryId }))
+            ? categories.map((category: any) => ({ id: category.id }))
             : [],
         },
       },
@@ -74,12 +74,12 @@ export class ProductService {
 
   async update(id: string, data: UpdateProductDto): Promise<Product> {
     const { categories, ...productData } = data;
-
+    console.log(categories);
     const existingProduct = await this.prismaService.product.findUnique({
       where: { id },
       include: { categories: true },
     });
-
+    console.log(existingProduct);
     if (!existingProduct) {
       throw new NotFoundError('Product');
     }
@@ -90,13 +90,16 @@ export class ProductService {
         ...productData,
         categories: {
           connect: Array.isArray(categories)
-            ? categories.map((categoryId: string) => ({ id: categoryId }))
+            ? categories.map((category: any) => ({ id: category.id }))
             : [],
           disconnect: Array.isArray(categories)
             ? existingProduct.categories
-                .filter((category) => !categories.includes(category.id))
-                .map((category) => ({ id: category.id }))
-            : [],
+                .filter(
+                  (category) =>
+                    !categories.some((cat: any) => cat.id === category.id),
+                ) // Compara com o campo 'iD'
+                .map((category) => ({ id: category.id })) // Mapeia para o formato correto
+            : [], //
         },
       },
     });
